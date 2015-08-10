@@ -1,0 +1,4 @@
+AutoBroadcast/All.ruleset
+*.pdb
+*.cache
+Build/AutoBroadcast.dll.CodeAnalysisLog.xml

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -8,7 +10,7 @@ using TShockAPI;
 
 namespace AutoBroadcast
 {
-	[ApiVersion(1, 14)]
+	[ApiVersion(1, 21)]
 	public class AutoBroadcast : TerrariaPlugin
 	{
 		public override string Name { get { return "AutoBroadcast"; } }
@@ -40,6 +42,10 @@ namespace AutoBroadcast
 			base.Dispose(Disposing);
 		}
 
+        public static void ConsoleError(String format, params String[] args)
+        {
+            ConsoleError(String.Format(format, args));
+        }
 		public void OnInitialize(EventArgs args)
 		{
 			Commands.ChatCommands.Add(new Command("abroadcast", autobc, "autobc"));
@@ -51,10 +57,14 @@ namespace AutoBroadcast
 			catch (Exception ex)
 			{
 				Config = new ABConfig();
-				Log.ConsoleError("[AutoBroadcast] An exception occurred while parsing the AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
+                ConsoleError("[AutoBroadcast] An exception occurred while parsing the AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
 			}
 		}
 
+        public static void Error(String format, params String[] args)
+        {
+            Error(String.Format(format, args));
+        }
 		public void autobc(CommandArgs args)
 		{
 			try
@@ -66,7 +76,7 @@ namespace AutoBroadcast
 			{
 				Config = new ABConfig();
 				args.Player.SendWarningMessage("An exception occurred while parsing the AutoBroadcast config! check logs for more details!");
-				Log.Error("[AutoBroadcast] An exception occurred while parsing tbe AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
+				Error("[AutoBroadcast] An exception occurred while parsing tbe AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
 			}
 		}
 
@@ -116,9 +126,9 @@ namespace AutoBroadcast
 		#region Update
 		public void OnUpdate(EventArgs args)
 		{
-			if ((DateTime.UtcNow - LastCheck).TotalSeconds >= 1)
+			if ((DateTime.Now - LastCheck).TotalSeconds >= 1)
 			{
-				LastCheck = DateTime.UtcNow;
+				LastCheck = DateTime.Now;
 				int NumBroadcasts = 0;
 				lock (Config.Broadcasts)
 					NumBroadcasts = Config.Broadcasts.Length;
