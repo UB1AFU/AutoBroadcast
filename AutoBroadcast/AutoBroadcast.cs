@@ -42,10 +42,6 @@ namespace AutoBroadcast
 			base.Dispose(Disposing);
 		}
 
-        public static void ConsoleError(String format, params String[] args)
-        {
-            ConsoleError(String.Format(format, args));
-        }
 		public void OnInitialize(EventArgs args)
 		{
 			Commands.ChatCommands.Add(new Command("abroadcast", autobc, "autobc"));
@@ -57,14 +53,10 @@ namespace AutoBroadcast
 			catch (Exception ex)
 			{
 				Config = new ABConfig();
-                ConsoleError("[AutoBroadcast] An exception occurred while parsing the AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
+                TShock.Log.ConsoleError("[AutoBroadcast] An exception occurred while parsing the AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
 			}
 		}
 
-        public static void Error(String format, params String[] args)
-        {
-            Error(String.Format(format, args));
-        }
 		public void autobc(CommandArgs args)
 		{
 			try
@@ -76,7 +68,7 @@ namespace AutoBroadcast
 			{
 				Config = new ABConfig();
 				args.Player.SendWarningMessage("An exception occurred while parsing the AutoBroadcast config! check logs for more details!");
-				Error("[AutoBroadcast] An exception occurred while parsing tbe AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
+                TShock.Log.Error("[AutoBroadcast] An exception occurred while parsing tbe AutoBroadcast config!\n{0}".SFormat(ex.ToString()));
 			}
 		}
 

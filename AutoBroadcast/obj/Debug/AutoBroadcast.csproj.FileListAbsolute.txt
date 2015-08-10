@@ -1,0 +1,7 @@
+D:\UB1AFU\Source\AutoBroadcast\Build\AutoBroadcast.dll
+D:\UB1AFU\Source\AutoBroadcast\Build\AutoBroadcast.pdb
+D:\UB1AFU\Source\AutoBroadcast\Build\AutoBroadcast.dll.CodeAnalysisLog.xml
+D:\UB1AFU\Source\AutoBroadcast\Build\AutoBroadcast.dll.lastcodeanalysissucceeded
+D:\UB1AFU\Source\AutoBroadcast\AutoBroadcast\obj\Debug\AutoBroadcast.csprojResolveAssemblyReference.cache
+D:\UB1AFU\Source\AutoBroadcast\AutoBroadcast\obj\Debug\AutoBroadcast.dll
+D:\UB1AFU\Source\AutoBroadcast\AutoBroadcast\obj\Debug\AutoBroadcast.pdb
